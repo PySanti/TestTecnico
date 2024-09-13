@@ -15,9 +15,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from applications.Cupos.views import Prueba
+from applications.Usuarios.views import ObtenerDatos
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('mi-api/', Prueba.as_view()),
+    path('usuarios/<str:nombre>/cupos/<str:parametro>/', ObtenerDatos.as_view()),
 ]
