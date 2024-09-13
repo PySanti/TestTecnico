@@ -14,5 +14,5 @@ class UsuariosManager(BaseUserManager):
         return new_user
     def create_superuser(self, username, password, email, **kwargs):
         return self._create_user(username, password, email, True, True, **kwargs)
-    def create_user(self, username, password, email, **kwargs):
+    def create_user(self, username, password, email,  **kwargs):
         return self._create_user(username, password, email, False, False, **kwargs)
