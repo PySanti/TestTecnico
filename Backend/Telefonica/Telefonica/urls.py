@@ -15,7 +15,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from applications.Cupos.views import Prueba
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('mi-api/', Prueba.as_view()),
 ]
