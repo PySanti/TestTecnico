@@ -12,5 +12,7 @@ class Cupos(models.Model):
     numero_movil = models.CharField(max_length=12, unique=True)
     saldo = models.DecimalField(decimal_places=2, max_digits=10)
     datos = models.DecimalField(decimal_places=2, max_digits=10)
+    max_datos = models.DecimalField(decimal_places=2, max_digits=10, default=None)
+    fecha_corte = models.DateField()
     plataforma = models.CharField(max_length=4, choices=PLATAFORMA_CHOICES, default="PRE")
     objects = CuposManager()
