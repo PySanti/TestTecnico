@@ -24,8 +24,7 @@ export default function DataCard({titulo, data}){
 
 const styles = StyleSheet.create({
     data_card :{
-        marginLeft : 20,
-        width : 130,
+        width : 150,
         height : 200,
         borderWidth : 2,
         borderRadius : 20,

@@ -16,6 +16,7 @@ export default function ConsumoDetailData({props}){
 const styles = StyleSheet.create({
     consumo_detail_data_container :{
         margin : 20,
+        gap : 30,
         flexDirection : "row",
     }
 });
