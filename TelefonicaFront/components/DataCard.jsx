@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
         marginBottom : 5
     },
     mid_text : {
-        color : "#888",
+        opacity : .5,
         marginBottom : 30
     },
     data : {

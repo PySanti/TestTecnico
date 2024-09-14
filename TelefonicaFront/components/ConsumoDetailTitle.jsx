@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
     },
     datos_linea_title_container_subtitle:{
         fontSize : 14,
-        color : "#999"
+        opacity : .5
     },
     datos_linea_title_container :{
         margin : 20

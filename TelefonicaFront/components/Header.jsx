@@ -1,5 +1,5 @@
 import React from "react"
-import {Text, View, StyleSheet, Image} from "react-native"
+import {Text, View, StyleSheet,  Image} from "react-native"
 
 
 
@@ -33,6 +33,7 @@ const styles = StyleSheet.create({
         justifyContent : 'center',
         borderRadius : 20,
         padding : 30,
+        marginTop : -10
     },
     base_text : {
         color : "#fff",
