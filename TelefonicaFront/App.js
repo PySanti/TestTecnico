@@ -22,7 +22,22 @@ export default function App(){
         />
       </View>
     </View>
-    <View style={styles.section, styles.second_section}></View>
+    <View style={styles.section, styles.second_section}>
+      <View style={styles.banner_container}>
+        <Image
+          source={require('./assets/banner.png')}
+          style={styles.banner_img}
+        />
+      </View>
+      <View style={styles.datos_linea}>
+        <View style={styles.datos_linea_title}>
+
+        </View>
+        <View style={styles.datos_linea_data}>
+
+        </View>
+      </View>
+    </View>
     <View style={styles.section, styles.third_section}></View>
   </View>
   )
@@ -33,12 +48,12 @@ const styles = StyleSheet.create({
     flex : 1,
     justifyContent : 'start',
     alignItems : 'center',
-    backgroundColor : '#aaa'
+    backgroundColor : '#fff'
   },
   header : {
     backgroundColor : "#3b98eb",
     width : '100%',
-    height : 200,
+    height : 250,
     alignItems : 'left',
     justifyContent : 'center',
     borderRadius : 20,
@@ -65,5 +80,14 @@ const styles = StyleSheet.create({
   },
   linea_selection_text : {
     color : "#000"
+  },
+  banner_container : {
+    marginTop : 20,
+    width : '100%',
+    justifyContent : 'center',
+    alignItems : 'center'
+  },
+  second_section : {
+    width : '100%'
   }
 });
