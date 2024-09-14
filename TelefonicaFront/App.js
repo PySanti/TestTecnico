@@ -30,8 +30,13 @@ export default function App(){
         />
       </View>
       <View style={styles.datos_linea}>
-        <View style={styles.datos_linea_title}>
-
+        <View style={styles.datos_linea_title_container}>
+          <Text style={styles.datos_linea_title_container_title}>
+            Detalles de tus consumos
+          </Text>
+          <Text style={styles.datos_linea_title_container_subtitle}>
+            Tu fecha de corte es el ...
+          </Text>
         </View>
         <View style={styles.datos_linea_data}>
 
@@ -87,7 +92,22 @@ const styles = StyleSheet.create({
     justifyContent : 'center',
     alignItems : 'center'
   },
+  banner_img : {
+    width : 350
+  },
   second_section : {
     width : '100%'
+  },
+  datos_linea_title_container_title : {
+    fontSize : 18,
+    fontWeight: 'bold',
+
+  },
+  datos_linea_title_container_subtitle:{
+    fontSize : 14,
+    color : "#999"
+  },
+  datos_linea_title_container :{
+    margin : 20
   }
 });
