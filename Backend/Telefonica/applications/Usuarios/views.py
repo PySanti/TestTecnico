@@ -4,7 +4,7 @@ from rest_framework import status
 from .models import Usuarios
 from django.core import serializers
 
-CUPOS_SHOWABLE_FIELDS = ["saldo", "numero_movil", "datos", "plataforma", "max_datos"]
+CUPOS_SHOWABLE_FIELDS = ["saldo", "numero_movil", "datos", "plataforma", "max_datos", "fecha_corte"]
 
 
 class GetDefaultCupo(APIView):
