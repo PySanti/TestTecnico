@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
         height : 160,
         borderWidth : 2,
         borderRadius : 10,
-        borderColor : "#aaa",
+        borderColor : "#ddd",
     },
     footer_link_title :{
         fontSize : 16,

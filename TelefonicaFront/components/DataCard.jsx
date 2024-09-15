@@ -29,10 +29,10 @@ export default function DataCard({titulo, data, max_data}){
 const styles = StyleSheet.create({
     data_card :{
         width : 150,
-        height : 200,
+        height : 160,
         borderWidth : 2,
         borderRadius : 20,
-        borderColor : "#aaa",
+        borderColor : "#ddd",
         alignItems : 'center',
         paddingTop : 10
     },
@@ -43,11 +43,11 @@ const styles = StyleSheet.create({
     },
     mid_text : {
         opacity : .5,
-        marginBottom : 30
+        marginBottom : 15
     },
     data : {
         marginTop : -15,
-        fontSize : 12
+        fontSize : 12,
     },
     data_container:{
         flexDirection : 'column',

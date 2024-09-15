@@ -20,7 +20,7 @@ export default function App(){
       setLineasTelefonicasList([...response.data.cupos_list])
       setLineaTelefonica(response.data.cupos_list[0])
     } catch (e){
-      setErrorMsg("Error inesperado cargando datos del usuario!")
+      setErrorMsg("¡ Error inesperado, inténtalo de nuevo mas tarde !")
     }
   }
   useEffect(()=>{
@@ -30,7 +30,7 @@ export default function App(){
   }, [])
   return (
     <ScrollView style={styles.base_container}>
-        <View style={styles.main_container}>
+        <View style={((!lineaTelefonica && !errorMsg) || errorMsg)? styles.unloaded_main_continer : styles.main_container}>
           {
             !lineaTelefonica && !errorMsg?
             <ActivityIndicator size="large" color="blue"/>
@@ -55,12 +55,17 @@ export default function App(){
 
 const styles = StyleSheet.create({
   base_container:{
-    flex : 1
+    flex : 1,
   },
   main_container: {
     flex : 1,
     justifyContent : 'start',
     alignItems : 'center',
+    height : '100%'
   },
-
+  unloaded_main_continer:{
+    height : 800,
+    justifyContent : 'center',
+    alignItems : 'center',
+  }
 });

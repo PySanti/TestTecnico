@@ -15,16 +15,11 @@ export default function Header({currentLineaState, currentLineaListState}){
         <View style={styles.linea_selection}>
             <Image source={require('../assets/movil.png')} style={styles.header_icon_r} />
             <View style={styles.linea_selection_text_container}>
-                {
-                    currentLineaList && currentLineaList.length > 1?
-                    <Picker selectedValue={currentLinea.numero_movil} onValueChange={handlePickerValueChange} mode="dropdown" style={styles.picker} dropdownIconColor="blue">
-                        {currentLineaList.map(element => {
-                            return <Picker.Item key={useId()} style={styles.base_text, styles.linea_selection_text} label={element.numero_movil} value={element.numero_movil} />
-                        })}
-                    </Picker>
-                :
-                    <Text style={styles.base_text, styles.linea_selection_text}>{currentLinea.numero_movil}</Text>
-                }
+                <Picker itemStyle={styles.base_text, styles.linea_selection_text}selectedValue={currentLinea.numero_movil} onValueChange={handlePickerValueChange} mode="dropdown" style={styles.picker} dropdownIconColor="#32b9fc">
+                    {currentLineaList.map(element => {
+                        return <Picker.Item key={useId()}  label={element.numero_movil} value={element.numero_movil} />
+                    })}
+                </Picker>
                 <Text style={styles.base_text, styles.linea_selection_subtext}>{currentLinea.plataforma == "POST"? "Postpago" : "Prepago"}</Text>
             </View>
         </View>
@@ -35,13 +30,14 @@ export default function Header({currentLineaState, currentLineaListState}){
 
 const styles = StyleSheet.create({
     header : {
-        backgroundColor : "#3b98eb",
+        backgroundColor : "#32b9fc",
         width : '100%',
         height : 250,
         alignItems : 'left',
         justifyContent : 'center',
         borderRadius : 20,
-        padding : 30,
+        padding : 20,
+        paddingTop : 40,
         marginTop : -10
     },
     base_text : {
@@ -61,11 +57,13 @@ const styles = StyleSheet.create({
     },
 
     linea_selection_text : {
-        color : "#000",
+        color : "#aaa",
         borderRadius : 20,
+        textAlign : 'left'
     },
     linea_selection_subtext:{
-        opacity:.5
+        opacity:.5,
+        marginLeft : 18
     },
     picker :{
         width : '100%',
@@ -73,7 +71,7 @@ const styles = StyleSheet.create({
     linea_selection_text_container:{
         alignItems : 'start',
         justifyContent : 'start',
-        width : '60%',
+        width : '80%',
     },
 
 

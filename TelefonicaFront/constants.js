@@ -1,1 +1,2 @@
-export const BASE_USER_NAME = "Alejandro Rojas"
+export const BASE_USER_NAME = "Samuel De Andrade"
+

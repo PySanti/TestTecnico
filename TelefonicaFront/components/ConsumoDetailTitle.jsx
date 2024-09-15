@@ -1,5 +1,6 @@
 import React from "react"
 import {Text, View, StyleSheet, Image} from "react-native"
+import {dateConvert} from "../utils/dateConvert"
 
 export default function ConsumoDetailTitle({currentLinea}){
     return (
@@ -8,7 +9,7 @@ export default function ConsumoDetailTitle({currentLinea}){
                 Detalles de tus consumos
             </Text>
             <Text style={styles.datos_linea_title_container_subtitle}>
-                Tu fecha de corte es el {currentLinea.fecha_corte}
+                Tu fecha de corte es el {dateConvert(currentLinea.fecha_corte)}
             </Text>
         </View>
     )

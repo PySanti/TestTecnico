@@ -13,4 +13,10 @@ export default function ErrorMsg({error}){
 }
 
 const styles = StyleSheet.create({
+    error_msg_container:{
+        padding : 20,
+        borderWidth : 2,
+        borderColor : "#aaa",
+        borderRadius : 20,
+    }
 });
