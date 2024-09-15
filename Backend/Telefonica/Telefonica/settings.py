@@ -1,6 +1,10 @@
 from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+# La llave secreta del proyecto deberia de estar almacenada
+# en un archivo secrets.json, el cual no sea trackeado por git. Para fines de comodidad,
+# esa practica no se realizara.
 SECRET_KEY = 'django-insecure-p0s_=i$(ts%@7(_^@2*o==5yjm+u1pt^e707km#6gr05kqf@-b'
 DEBUG = True
 
@@ -63,13 +67,16 @@ WSGI_APPLICATION = 'Telefonica.wsgi.application'
 
 
 DATABASES = {
+    # Los datos de acceso a la base de datos deberian de estar almacenados
+    # en un archivo secrets.json, el cual no sea trackeado por git. Para fines de comodidad,
+    # esa practica no se realizara.
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'Telefonica',
         'USER': 'pysanti',
-        'PASSWORD': '16102005',
-        'HOST': 'localhost',  # o la dirección de tu servidor MySQL
-        'PORT': '3306',       # el puerto por defecto de MySQL
+        'PASSWORD': '123456789',
+        'HOST': 'localhost',  
+        'PORT': '3306', 
     }
 }
 
