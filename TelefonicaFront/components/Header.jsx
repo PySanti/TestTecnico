@@ -1,31 +1,32 @@
 import React from "react"
 import {Text, View, StyleSheet,  Image} from "react-native"
 import {BASE_USER_NAME} from "../constants"
-import {useLineaTelefonica} from "../store"
-import {useEffect} from "react"
+import {useId, useEffect, useState} from "react"
+import {Picker} from '@react-native-picker/picker';
 
 
-
-export default function Header(){
-    let {lineaTelefonica, setLineaTelefonica}    = useLineaTelefonica.getState()
-
+export default function Header({currentLineaState, currentLineaListState}){
+    const [currentLinea, setCurrentLinea]           = currentLineaState
+    const [currentLineaList, setCurrentLineaList]   = currentLineaListState
+    const handlePickerValueChange = (itemValue, itemIndex) => setCurrentLinea(currentLineaList[itemIndex])
     return (
     <View style={ styles.header}>
         <Text style={styles.base_text}>¡Hola, {BASE_USER_NAME.split(" ")[0]}!</Text>
         <View style={styles.linea_selection}>
-            <View style={styles.inner_linea_selection}>
-                <Image
-                    source={require('../assets/movil.png')}
-                    style={styles.header_icon_r}
-                />
-                <View style={styles.linea_selection_text_container}>
-                    <Text style={styles.base_text, styles.linea_selection_text}>{lineaTelefonica.numero_movil}</Text>
-                    <Text style={styles.base_text, styles.linea_selection_subtext}>{lineaTelefonica.plataforma == "POST"? "Postpago" : "Prepago"}</Text>
-                </View>
+            <Image source={require('../assets/movil.png')} style={styles.header_icon_r} />
+            <View style={styles.linea_selection_text_container}>
+                {
+                    currentLineaList && currentLineaList.length > 1?
+                    <Picker selectedValue={currentLinea.numero_movil} onValueChange={handlePickerValueChange} mode="dropdown" style={styles.picker} dropdownIconColor="blue">
+                        {currentLineaList.map(element => {
+                            return <Picker.Item key={useId()} style={styles.base_text, styles.linea_selection_text} label={element.numero_movil} value={element.numero_movil} />
+                        })}
+                    </Picker>
+                :
+                    <Text style={styles.base_text, styles.linea_selection_text}>{currentLinea.numero_movil}</Text>
+                }
+                <Text style={styles.base_text, styles.linea_selection_subtext}>{currentLinea.plataforma == "POST"? "Postpago" : "Prepago"}</Text>
             </View>
-            <Image
-            source={require('../assets/actions.png')}
-            />
         </View>
     </View>
     )
@@ -51,22 +52,29 @@ const styles = StyleSheet.create({
     linea_selection : {
         backgroundColor : "#fff",
         width : "100%",
-        height : 80,
+        height : 90,
         borderRadius : 10,
         padding : 10,
-        justifyContent : 'space-between',
+        justifyContent : 'start',
         alignItems : 'center',
-        flexDirection : 'row'
+        flexDirection : 'row',
     },
-    inner_linea_selection : {
-        alignItems : 'center',
-        flexDirection : 'row'
-    },
+
     linea_selection_text : {
-        color : "#000"
+        color : "#000",
+        borderRadius : 20,
     },
     linea_selection_subtext:{
         opacity:.5
-    }
+    },
+    picker :{
+        width : '100%',
+    },
+    linea_selection_text_container:{
+        alignItems : 'start',
+        justifyContent : 'start',
+        width : '60%',
+    },
+
 
 });

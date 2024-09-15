@@ -46,7 +46,8 @@ const styles = StyleSheet.create({
         marginBottom : 30
     },
     data : {
-        marginTop : -15
+        marginTop : -15,
+        fontSize : 12
     },
     data_container:{
         flexDirection : 'column',
@@ -54,7 +55,8 @@ const styles = StyleSheet.create({
         alignItems : 'center'
     },
     max_data:{
-        opacity : .5
+        opacity : .5,
+        fontSize : 12
     }
 
 });

@@ -1,15 +1,13 @@
 import React from "react"
 import {Text, View, StyleSheet, Image} from "react-native"
 import DataCard from "./DataCard"
-import {useLineaTelefonica} from "../store"
 
 
-export default function ConsumoDetailData({props}){
-    let {lineaTelefonica, setLineaTelefonica}    = useLineaTelefonica.getState()
+export default function ConsumoDetailData({currentLinea}){
     return (
         <View style={styles.consumo_detail_data_container}>
-            <DataCard titulo="Saldo" data={`Bs. ${lineaTelefonica.saldo}`}/>
-            <DataCard titulo="Megas" data={`${Number(lineaTelefonica.datos)} MB`} max_data={Number(lineaTelefonica.max_datos)}/>
+            <DataCard titulo="Saldo" data={`Bs. ${currentLinea.saldo}`}/>
+            <DataCard titulo="Megas" data={`${Number(currentLinea.datos)} MB`} max_data={Number(currentLinea.max_datos)}/>
         </View>
     )
 }

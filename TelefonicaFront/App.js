@@ -7,31 +7,25 @@ import {useEffect, useState} from "react"
 import axios from 'axios'
 import {BASE_USER_NAME} from "./constants"
 import ErrorMsg from "./components/ErrorMsg"
-import {useLineaTelefonica} from "./store"
-import {useLineasTelefonicasList} from "./store"
 
 
 export default function App(){
-  let {lineaTelefonica, setLineaTelefonica}    = useLineaTelefonica.getState()
-  let {lineasTelefonicasList, setlineasTelefonicasList}    = useLineasTelefonicasList.getState()
+  let [lineaTelefonica, setLineaTelefonica]                = useState(null)
+  let [lineasTelefonicasList, setLineasTelefonicasList]    = useState([])
   let [errorMsg, setErrorMsg]               = useState(null)
   const handleDefaultCupoRequest = async ()=>{
     try {
-      // const response = await axios.get(`http://192.168.1.109:8000/usuarios/${BASE_USER_NAME}/cupos/all`)
-      const response = await axios.get(`http://127.0.0.1:8000/usuarios/${BASE_USER_NAME}/cupos/all/`)
+      const response = await axios.get(`http://192.168.1.109:8000/usuarios/${BASE_USER_NAME}/cupos/all`)
+      // const response = await axios.get(`http://127.0.0.1:8000/usuarios/${BASE_USER_NAME}/cupos/all/`)
+      setLineasTelefonicasList([...response.data.cupos_list])
       setLineaTelefonica(response.data.cupos_list[0])
-      setlineasTelefonicasList(response.data.cupos_list)
-      setErrorMsg(false)
     } catch (e){
       setErrorMsg("Error inesperado cargando datos del usuario!")
     }
   }
   useEffect(()=>{
     if (!lineaTelefonica && !errorMsg){
-      (async()=>{
-          await handleDefaultCupoRequest()
-        }
-      )();
+      (async()=>{ await handleDefaultCupoRequest() })();
     }
   }, [])
   return (
@@ -47,8 +41,8 @@ export default function App(){
                 <ErrorMsg error={errorMsg}/>
                 :
                 <>
-                  <Header />
-                  <Content/>
+                  <Header  currentLineaState={[lineaTelefonica, setLineaTelefonica]} currentLineaListState={[lineasTelefonicasList, setLineasTelefonicasList]}/>
+                  <Content currentLinea={lineaTelefonica}/>
                   <Footer/>
                 </>
               }
