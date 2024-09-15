@@ -15,8 +15,8 @@ export default function App(){
   let [errorMsg, setErrorMsg]               = useState(null)
   const handleDefaultCupoRequest = async ()=>{
     try {
-      // const response = await axios.get(`http://192.168.1.109:8000/usuarios/${BASE_USER_NAME}/cupos/all`)
-      const response = await axios.get(`http://127.0.0.1:8000/usuarios/${BASE_USER_NAME}/cupos/all/`)
+      // aqui se debe usar la ip dentro de la red local de la pc que corre el backend  
+      const response = await axios.get(`http://192.168.1.109:8000/usuarios/${BASE_USER_NAME}/cupos/all`)
       setLineasTelefonicasList([...response.data.cupos_list])
       setLineaTelefonica(response.data.cupos_list[0])
     } catch (e){
