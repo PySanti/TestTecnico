@@ -8,8 +8,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-p0s_=i$(ts%@7(_^@2*o==5yjm+u1pt^e707km#6gr05kqf@-b'
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
+
+CORS_ALLOW_ALL_ORIGINS = True
 
 # Application definition
 
@@ -22,7 +24,8 @@ BASE_APPS = [
     'django.contrib.staticfiles',
 ]
 THIRD_PARTY_APPS = [
-    'rest_framework'
+    'rest_framework',
+    'corsheaders'
 ]
 MY_APPS = [
     'applications.Usuarios',
@@ -31,6 +34,8 @@ MY_APPS = [
 INSTALLED_APPS = BASE_APPS + THIRD_PARTY_APPS + MY_APPS
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',

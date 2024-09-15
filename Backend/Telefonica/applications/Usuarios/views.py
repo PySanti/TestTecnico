@@ -6,6 +6,19 @@ from django.core import serializers
 
 CUPOS_SHOWABLE_FIELDS = ["saldo", "numero_movil", "datos", "plataforma", "max_datos"]
 
+
+class GetDefaultCupo(APIView):
+    # Retornara una linea telefonica por defecto del usuario
+    def get(self, request, nombre):
+        if (Usuarios.objects.filter(nombre=nombre)):
+            user = Usuarios.objects.get(nombre=nombre)
+            return JsonResponse({"default" : user.cupos.all().values(*CUPOS_SHOWABLE_FIELDS)[0]}, status=status.HTTP_200_OK)
+        else:
+            return JsonResponse({"error":"not_existing_user"}, status=status.HTTP_400_BAD_REQUEST)
+
+
+
+
 class ObtenerDatos(APIView):
     def get(self, request, nombre, parametro):
         if (Usuarios.objects.filter(nombre=nombre)):
