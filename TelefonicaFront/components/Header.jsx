@@ -1,19 +1,24 @@
 import React from "react"
 import {Text, View, StyleSheet,  Image} from "react-native"
+import {BASE_USER_NAME} from "../constants"
+import {useLineaTelefonica} from "../store"
+import {useEffect} from "react"
 
 
 
 export default function Header(){
+    let {lineaTelefonica, setLineaTelefonica}    = useLineaTelefonica.getState()
+
     return (
     <View style={ styles.header}>
-        <Text style={styles.base_text}>¡Hola, usuario!</Text>
+        <Text style={styles.base_text}>¡Hola, {BASE_USER_NAME.split(" ")[0]}!</Text>
         <View style={styles.linea_selection}>
             <View style={styles.inner_linea_selection}>
                 <Image
                     source={require('../assets/movil.png')}
                     style={styles.header_icon_r}
                 />
-                <Text style={styles.base_text, styles.linea_selection_text}>Datos de la linea</Text>
+                <Text style={styles.base_text, styles.linea_selection_text}>{lineaTelefonica.numero_movil}</Text>
             </View>
             <Image
             source={require('../assets/actions.png')}

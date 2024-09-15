@@ -1,23 +1,64 @@
 import React from "react"
-import {Text, View, ScrollView,StyleSheet, Image} from "react-native"
+import {Text, View, ScrollView, ActivityIndicator, StyleSheet, Image} from "react-native"
 import Header from "./components/Header"
 import Content from "./components/Content"
 import Footer from "./components/Footer"
+import {useEffect, useState} from "react"
+import axios from 'axios'
+import {BASE_USER_NAME} from "./constants"
+import ErrorMsg from "./components/ErrorMsg"
+import {useLineaTelefonica} from "./store"
 
 
 export default function App(){
+  let {lineaTelefonica, setLineaTelefonica}    = useLineaTelefonica.getState()
+  let [errorMsg, setErrorMsg]               = useState(null)
+  const handleDefaultCupoRequest = async ()=>{
+    try {
+      const response = await axios.get(`http://127.0.0.1:8000/usuarios/${BASE_USER_NAME}/default_cupo/`)
+      setLineaTelefonica(response.data.default)
+      setErrorMsg(false)
+    } catch (e){
+      setErrorMsg("Error inesperado cargando datos del usuario!")
+    }
+  }
+  useEffect(()=>{
+    if (!lineaTelefonica && !errorMsg){
+      (async()=>{
+          await handleDefaultCupoRequest()
+        }
+      )();
+    }
+  }, [])
   return (
-    <ScrollView>
-      <View style={styles.main_container}>
-        <Header/>
-        <Content/>
-        <Footer/>
-      </View>
+    <ScrollView style={styles.base_container}>
+        <View style={styles.main_container}>
+          {
+            !lineaTelefonica && !errorMsg?
+            <ActivityIndicator size="large" color="blue"/>
+            :
+            <>
+              {
+                errorMsg?
+                <ErrorMsg error={errorMsg}/>
+                :
+                <>
+                  <Header />
+                  <Content/>
+                  <Footer/>
+                </>
+              }
+            </>
+          }
+        </View>
     </ScrollView>
   )
 }
 
 const styles = StyleSheet.create({
+  base_container:{
+    flex : 1
+  },
   main_container: {
     flex : 1,
     justifyContent : 'start',
