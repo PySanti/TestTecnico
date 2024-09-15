@@ -17,11 +17,9 @@ from django.contrib import admin
 from django.urls import path
 from applications.Usuarios.views import (
     ObtenerDatos,
-    GetDefaultCupo
 )
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('usuarios/<str:nombre>/cupos/<str:parametro>/', ObtenerDatos.as_view()),
-    path('usuarios/<str:nombre>/default_cupo/', GetDefaultCupo.as_view()),
 ]

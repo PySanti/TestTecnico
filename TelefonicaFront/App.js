@@ -8,16 +8,19 @@ import axios from 'axios'
 import {BASE_USER_NAME} from "./constants"
 import ErrorMsg from "./components/ErrorMsg"
 import {useLineaTelefonica} from "./store"
+import {useLineasTelefonicasList} from "./store"
 
 
 export default function App(){
   let {lineaTelefonica, setLineaTelefonica}    = useLineaTelefonica.getState()
+  let {lineasTelefonicasList, setlineasTelefonicasList}    = useLineasTelefonicasList.getState()
   let [errorMsg, setErrorMsg]               = useState(null)
   const handleDefaultCupoRequest = async ()=>{
     try {
-      const response = await axios.get(`http://192.168.1.109:8000/usuarios/${BASE_USER_NAME}/default_cupo/`)
-      // const response = await axios.get(`http://127.0.0.1:8000/usuarios/${BASE_USER_NAME}/default_cupo/`)
-      setLineaTelefonica(response.data.default)
+      // const response = await axios.get(`http://192.168.1.109:8000/usuarios/${BASE_USER_NAME}/cupos/all`)
+      const response = await axios.get(`http://127.0.0.1:8000/usuarios/${BASE_USER_NAME}/cupos/all/`)
+      setLineaTelefonica(response.data.cupos_list[0])
+      setlineasTelefonicasList(response.data.cupos_list)
       setErrorMsg(false)
     } catch (e){
       setErrorMsg("Error inesperado cargando datos del usuario!")

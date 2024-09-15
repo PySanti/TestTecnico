@@ -7,22 +7,18 @@ from django.core import serializers
 CUPOS_SHOWABLE_FIELDS = ["saldo", "numero_movil", "datos", "plataforma", "max_datos", "fecha_corte"]
 
 
-class GetDefaultCupo(APIView):
-    # Retornara una linea telefonica por defecto del usuario
-    def get(self, request, nombre):
-        if (Usuarios.objects.filter(nombre=nombre)):
-            user = Usuarios.objects.get(nombre=nombre)
-            return JsonResponse({"default" : user.cupos.all().values(*CUPOS_SHOWABLE_FIELDS)[0]}, status=status.HTTP_200_OK)
-        else:
-            return JsonResponse({"error":"not_existing_user"}, status=status.HTTP_400_BAD_REQUEST)
-
-
-
 
 class ObtenerDatos(APIView):
+    # Esta view permitira consumir/filtrar los cupos del usuario
+    # En caso de recibir el parametro "all" se retornaran todos los cupos
+    # En caso de recibir el parametro "prepago" o "postpago" se retornaran aquellos cupos prepago o postpago respectivamente
+    # En caso de recibir un numero que empiece por 0424 o 0414, se retornaran los numeros cuyos numeros_moviles empiecen por 0424 o 0414
+    # En caso de recibir un numero real, se retornaran los cupos que tengan ese numero en saldo o en datos
     def get(self, request, nombre, parametro):
         if (Usuarios.objects.filter(nombre=nombre)):
             user = Usuarios.objects.get(nombre=nombre)
+            if parametro.lower() == "all":
+                return JsonResponse({"cupos_list": list(user.cupos.all().values(*CUPOS_SHOWABLE_FIELDS))}, status=status.HTTP_200_OK)
             if parametro.lower() in ["prepago", "postpago"]:
                 cupos_plataforma = user.cupos.filter(plataforma="pre" if parametro.lower()=="prepago" else "post").values(*CUPOS_SHOWABLE_FIELDS)
                 return JsonResponse({"cupos_by_plataforma": list(cupos_plataforma)}, status=status.HTTP_200_OK)
