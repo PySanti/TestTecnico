@@ -15,7 +15,8 @@ export default function App(){
   let [errorMsg, setErrorMsg]               = useState(null)
   const handleDefaultCupoRequest = async ()=>{
     try {
-      const response = await axios.get(`http://127.0.0.1:8000/usuarios/${BASE_USER_NAME}/default_cupo/`)
+      const response = await axios.get(`http://192.168.1.109:8000/usuarios/${BASE_USER_NAME}/default_cupo/`)
+      // const response = await axios.get(`http://127.0.0.1:8000/usuarios/${BASE_USER_NAME}/default_cupo/`)
       setLineaTelefonica(response.data.default)
       setErrorMsg(false)
     } catch (e){

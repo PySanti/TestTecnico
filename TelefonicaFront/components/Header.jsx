@@ -18,7 +18,10 @@ export default function Header(){
                     source={require('../assets/movil.png')}
                     style={styles.header_icon_r}
                 />
-                <Text style={styles.base_text, styles.linea_selection_text}>{lineaTelefonica.numero_movil}</Text>
+                <View style={styles.linea_selection_text_container}>
+                    <Text style={styles.base_text, styles.linea_selection_text}>{lineaTelefonica.numero_movil}</Text>
+                    <Text style={styles.base_text, styles.linea_selection_subtext}>{lineaTelefonica.plataforma == "POST"? "Postpago" : "Prepago"}</Text>
+                </View>
             </View>
             <Image
             source={require('../assets/actions.png')}
@@ -62,5 +65,8 @@ const styles = StyleSheet.create({
     linea_selection_text : {
         color : "#000"
     },
+    linea_selection_subtext:{
+        opacity:.5
+    }
 
 });

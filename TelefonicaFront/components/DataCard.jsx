@@ -8,7 +8,7 @@ const iconPaths = {
 
 
 
-export default function DataCard({titulo, data}){
+export default function DataCard({titulo, data, max_data}){
     return (
         <View style={styles.data_card}>
             <Text style={styles.data_card_title}>{titulo}</Text>
@@ -17,7 +17,11 @@ export default function DataCard({titulo, data}){
                 source={iconPaths[titulo.toLowerCase()]}
                 style={styles.banner_img}
             />
-            <Text style={styles.data}>{data}</Text>
+            <View style={styles.data_container}>
+                <Text style={styles.data}>{data}</Text>
+                {max_data && <Text style={styles.max_data}>de {max_data}</Text>}
+            </View>
+
         </View>
     )
 }
@@ -43,6 +47,14 @@ const styles = StyleSheet.create({
     },
     data : {
         marginTop : -15
+    },
+    data_container:{
+        flexDirection : 'column',
+        justifyContent : 'center',
+        alignItems : 'center'
+    },
+    max_data:{
+        opacity : .5
     }
 
 });

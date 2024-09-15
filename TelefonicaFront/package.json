@@ -6,7 +6,8 @@
     "start": "expo start",
     "android": "expo start --android",
     "ios": "expo start --ios",
-    "web": "expo start --web"
+    "web": "expo start --web",
+    "android-dev": "adb reverse tcp:8081 tcp:8081"
   },
   "dependencies": {
     "@expo/metro-runtime": "~3.2.3",
