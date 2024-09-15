@@ -32,13 +32,13 @@ const styles = StyleSheet.create({
     header : {
         backgroundColor : "#32b9fc",
         width : '100%',
-        height : 250,
+        height : 280,
         alignItems : 'left',
         justifyContent : 'center',
         borderRadius : 20,
         padding : 20,
         paddingTop : 40,
-        marginTop : -10
+        marginTop : -30
     },
     base_text : {
         color : "#fff",

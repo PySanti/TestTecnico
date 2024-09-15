@@ -9,6 +9,7 @@ export default function Banner({props}){
             <Image
                 source={require('../assets/banner.png')}
                 style={styles.banner_img}
+                resizeMode="contain"
             />
         </View>
     )
@@ -23,6 +24,6 @@ const styles = StyleSheet.create({
         alignItems : 'center'
     },
     banner_img : {
-        width : 350
+        width : "100%"
     },
 });

@@ -15,8 +15,10 @@ export default function ConsumoDetailData({currentLinea}){
 
 const styles = StyleSheet.create({
     consumo_detail_data_container :{
+        justifyContent : "center",
         margin : 20,
         gap : 20,
         flexDirection : "row",
+        flexWrap : "wrap"
     }
 });
