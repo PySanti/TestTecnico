@@ -10,9 +10,9 @@ import ErrorMsg from "./components/ErrorMsg"
 
 
 export default function App(){
-  let [lineaTelefonica, setLineaTelefonica]                = useState(null)
-  let [lineasTelefonicasList, setLineasTelefonicasList]    = useState([])
-  let [errorMsg, setErrorMsg]               = useState(null)
+  let [lineaTelefonica, setLineaTelefonica]                 = useState(null)
+  let [lineasTelefonicasList, setLineasTelefonicasList]     = useState([])
+  let [errorMsg, setErrorMsg]                               = useState(null)
   const handleDefaultCupoRequest = async ()=>{
     try {
       // aqui se debe usar la ip dentro de la red local de la pc que corre el backend  
@@ -61,7 +61,6 @@ const styles = StyleSheet.create({
     flex : 1,
     justifyContent : 'start',
     alignItems : 'center',
-    height : '100%'
   },
   unloaded_main_continer:{
     height : 800,

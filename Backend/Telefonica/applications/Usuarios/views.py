@@ -12,9 +12,10 @@ class ObtenerDatos(APIView):
     # Esta view permitira consumir/filtrar los cupos del usuario
     # En caso de recibir el parametro "all" se retornaran todos los cupos
     # En caso de recibir el parametro "prepago" o "postpago" se retornaran aquellos cupos prepago o postpago respectivamente
-    # En caso de recibir un numero que empiece por 0424 o 0414, se retornaran los numeros cuyos numeros_moviles empiecen por 0424 o 0414
+    # En caso de recibir un numero que empiece por 0424 o 0414, se retornaran los cupos cuyos numeros_moviles empiecen por 0424 o 0414
     # En caso de recibir un numero real, se retornaran los cupos que tengan ese numero en saldo o en datos
-    def get(self, request, nombre, parametro):
+    # En todos los casos que no son ninguno de los anteriores se retornara error por BAD_REQUEST. Igualmente en el caso en el que el nombre de usuario del parametro no exista
+    def get(self, request, nombre : str, parametro : str):
         if (Usuarios.objects.filter(nombre=nombre)):
             user = Usuarios.objects.get(nombre=nombre)
             if parametro.lower() == "all":
@@ -31,6 +32,7 @@ class ObtenerDatos(APIView):
                     if (len(parametro) == 11):
                         cupos_by_movil = user.cupos.filter(numero_movil=parametro).values(*CUPOS_SHOWABLE_FIELDS)
                         if (cupos_by_movil):
+                            # como el numero_movil es unique, sabemos que en este punto el queryset solo tendra 1 elemento
                             return JsonResponse({"cupos_by_movil" : cupos_by_movil[0]}, status=status.HTTP_200_OK)
                         else:
                             return JsonResponse({"error" : "no_cupos_by_movil"}, status=status.HTTP_200_OK)

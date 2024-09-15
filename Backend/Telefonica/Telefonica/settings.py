@@ -7,13 +7,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # esa practica no se realizara.
 SECRET_KEY = 'django-insecure-p0s_=i$(ts%@7(_^@2*o==5yjm+u1pt^e707km#6gr05kqf@-b'
 DEBUG = True
-
 ALLOWED_HOSTS = ['*']
-
-
 CORS_ALLOW_ALL_ORIGINS = True
-
-# Application definition
 
 BASE_APPS = [
     'django.contrib.admin',

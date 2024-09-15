@@ -1,6 +1,7 @@
 from django.contrib.auth.models import BaseUserManager
 
 class UsuariosManager(BaseUserManager):
+    # manager creado por requerimiento de implementacion de tabla de Usuarios en Django
     def _create_user(self, username, password, email, is_staff, is_superuser, **kwargs):
         new_user = self.model(
             username = username,
